@@ -1,4 +1,4 @@
-# ![](obs_godot_icon.png) OBS Websocket GD
+# [![](https://raw.githubusercontent.com/you-win/obs-websocket-gd/master/obs_godot_icon.png) OBS Websocket GD](https://github.com/you-win/obs-websocket-gd)
 
 [![Chat on Discord](https://img.shields.io/discord/853476898071117865?label=chat&logo=discord)](https://discord.gg/6mcdWWBkrr)
 
