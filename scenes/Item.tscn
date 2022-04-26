@@ -1,0 +1,16 @@
+[gd_scene format=2]
+
+[node name="Item" type="VBoxContainer"]
+
+[node name="Button" type="Button" parent="."]
+margin_right = 92.0
+margin_bottom = 92.0
+rect_min_size = Vector2( 92, 92 )
+
+[node name="Label" type="Label" parent="."]
+margin_top = 96.0
+margin_right = 92.0
+margin_bottom = 110.0
+text = "Button"
+align = 1
+autowrap = true

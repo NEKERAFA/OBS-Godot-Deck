@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="OBS Godot Deck"
-run/main_scene="res://scenes/InitialConfiguration.tscn"
+run/main_scene="res://scenes/Desktop.tscn"
 config/icon="res://icon.png"
 
 [autoload]

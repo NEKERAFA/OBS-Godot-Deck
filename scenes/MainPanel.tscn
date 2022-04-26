@@ -1,11 +1,20 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/styles/BlackStyleBox.tres" type="StyleBox" id=1]
+[ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/PlaceholderItem.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/fonts/noto_sans_regular_data.tres" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/icons/list-add.svg" type="Texture" id=4]
+[ext_resource path="res://assets/icons/system.svg" type="Texture" id=5]
+[ext_resource path="res://scripts/main_panel.gd" type="Script" id=6]
 
-[node name="MainPanel" type="Panel"]
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 3 )
+
+[node name="MainPanel" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = ExtResource( 1 )
+script = ExtResource( 6 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -13,9 +22,9 @@ anchor_bottom = 1.0
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
 margin_left = 134.0
-margin_top = 48.0
+margin_top = 83.0
 margin_right = 890.0
-margin_bottom = 552.0
+margin_bottom = 517.0
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
@@ -25,148 +34,191 @@ custom_constants/margin_bottom = 20
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 736.0
-margin_bottom = 484.0
+margin_bottom = 414.0
 custom_constants/vseparation = 32
 custom_constants/hseparation = 64
 columns = 5
 
-[node name="Button" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
+[node name="Item" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 1 )]
+visible = false
 margin_right = 92.0
-margin_bottom = 92.0
-rect_min_size = Vector2( 92, 92 )
+margin_bottom = 110.0
 
-[node name="Button2" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
+[node name="Item2" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_right = 92.0
+margin_bottom = 110.0
+
+[node name="Item3" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_right = 92.0
+margin_bottom = 110.0
+
+[node name="Item4" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_right = 92.0
+margin_bottom = 110.0
+
+[node name="Item5" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_right = 92.0
+margin_bottom = 110.0
+
+[node name="Item6" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_right = 92.0
+margin_bottom = 110.0
+
+[node name="Item7" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_right = 92.0
+margin_bottom = 110.0
+
+[node name="Item8" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_right = 92.0
+margin_bottom = 110.0
+
+[node name="Item9" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_right = 92.0
+margin_bottom = 110.0
+
+[node name="Item10" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_right = 92.0
+margin_bottom = 110.0
+
+[node name="Item11" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_right = 92.0
+margin_bottom = 110.0
+
+[node name="Item12" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_right = 92.0
+margin_bottom = 110.0
+
+[node name="Item13" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_right = 92.0
+margin_bottom = 110.0
+
+[node name="Item14" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_right = 92.0
+margin_bottom = 110.0
+
+[node name="Item15" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 1 )]
+visible = false
 margin_left = 156.0
 margin_right = 248.0
-margin_bottom = 92.0
-rect_min_size = Vector2( 92, 92 )
+margin_bottom = 110.0
 
-[node name="Button3" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
-margin_left = 312.0
-margin_right = 404.0
-margin_bottom = 92.0
-rect_min_size = Vector2( 92, 92 )
+[node name="PlaceholderItem" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 2 )]
 
-[node name="Button4" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
-margin_left = 468.0
-margin_right = 560.0
-margin_bottom = 92.0
-rect_min_size = Vector2( 92, 92 )
-
-[node name="Button5" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
-margin_left = 624.0
-margin_right = 716.0
-margin_bottom = 92.0
-rect_min_size = Vector2( 92, 92 )
-
-[node name="Button6" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
-margin_top = 124.0
-margin_right = 92.0
-margin_bottom = 216.0
-rect_min_size = Vector2( 92, 92 )
-
-[node name="Button7" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
+[node name="PlaceholderItem2" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 2 )]
 margin_left = 156.0
-margin_top = 124.0
 margin_right = 248.0
-margin_bottom = 216.0
-rect_min_size = Vector2( 92, 92 )
 
-[node name="Button8" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
+[node name="PlaceholderItem3" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 2 )]
 margin_left = 312.0
-margin_top = 124.0
 margin_right = 404.0
-margin_bottom = 216.0
-rect_min_size = Vector2( 92, 92 )
 
-[node name="Button9" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
+[node name="PlaceholderItem4" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 2 )]
 margin_left = 468.0
-margin_top = 124.0
 margin_right = 560.0
-margin_bottom = 216.0
-rect_min_size = Vector2( 92, 92 )
 
-[node name="Button10" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
+[node name="PlaceholderItem5" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 2 )]
 margin_left = 624.0
-margin_top = 124.0
 margin_right = 716.0
-margin_bottom = 216.0
-rect_min_size = Vector2( 92, 92 )
 
-[node name="Button11" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
-margin_top = 248.0
-margin_right = 92.0
-margin_bottom = 340.0
-rect_min_size = Vector2( 92, 92 )
+[node name="PlaceholderItem6" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 2 )]
+margin_top = 142.0
+margin_bottom = 252.0
 
-[node name="Button12" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
+[node name="PlaceholderItem7" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 2 )]
 margin_left = 156.0
-margin_top = 248.0
+margin_top = 142.0
 margin_right = 248.0
-margin_bottom = 340.0
-rect_min_size = Vector2( 92, 92 )
+margin_bottom = 252.0
 
-[node name="Button13" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
+[node name="PlaceholderItem8" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 2 )]
 margin_left = 312.0
-margin_top = 248.0
+margin_top = 142.0
 margin_right = 404.0
-margin_bottom = 340.0
-rect_min_size = Vector2( 92, 92 )
+margin_bottom = 252.0
 
-[node name="Button14" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
+[node name="PlaceholderItem9" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 2 )]
 margin_left = 468.0
-margin_top = 248.0
+margin_top = 142.0
 margin_right = 560.0
-margin_bottom = 340.0
-rect_min_size = Vector2( 92, 92 )
+margin_bottom = 252.0
 
-[node name="Button15" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
+[node name="PlaceholderItem10" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 2 )]
 margin_left = 624.0
-margin_top = 248.0
+margin_top = 142.0
 margin_right = 716.0
-margin_bottom = 340.0
-rect_min_size = Vector2( 92, 92 )
+margin_bottom = 252.0
 
-[node name="Button16" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
-margin_top = 372.0
-margin_right = 92.0
-margin_bottom = 464.0
-rect_min_size = Vector2( 92, 92 )
+[node name="PlaceholderItem11" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 2 )]
+margin_top = 284.0
+margin_bottom = 394.0
 
-[node name="Button17" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
+[node name="PlaceholderItem12" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 2 )]
 margin_left = 156.0
-margin_top = 372.0
+margin_top = 284.0
 margin_right = 248.0
-margin_bottom = 464.0
-rect_min_size = Vector2( 92, 92 )
+margin_bottom = 394.0
 
-[node name="Button18" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
+[node name="PlaceholderItem13" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 2 )]
 margin_left = 312.0
-margin_top = 372.0
+margin_top = 284.0
 margin_right = 404.0
-margin_bottom = 464.0
-rect_min_size = Vector2( 92, 92 )
+margin_bottom = 394.0
 
-[node name="Button19" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
+[node name="PlaceholderItem14" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 2 )]
 margin_left = 468.0
-margin_top = 372.0
+margin_top = 284.0
 margin_right = 560.0
-margin_bottom = 464.0
-rect_min_size = Vector2( 92, 92 )
+margin_bottom = 394.0
 
-[node name="Button20" type="Button" parent="CenterContainer/MarginContainer/GridContainer"]
+[node name="PlaceholderItem15" parent="CenterContainer/MarginContainer/GridContainer" instance=ExtResource( 2 )]
 margin_left = 624.0
-margin_top = 372.0
+margin_top = 284.0
 margin_right = 716.0
-margin_bottom = 464.0
-rect_min_size = Vector2( 92, 92 )
+margin_bottom = 394.0
 
-[node name="Button" type="Button" parent="."]
+[node name="NoItemsPlaceholder" type="Label" parent="CenterContainer"]
+margin_left = 131.0
+margin_top = 266.0
+margin_right = 893.0
+margin_bottom = 333.0
+custom_fonts/font = SubResource( 1 )
+text = "Add new command to show there"
+
+[node name="AddItemBtn" type="Button" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -88.0
-margin_top = -88.0
+margin_left = -72.0
+margin_top = -72.0
 margin_right = -24.0
 margin_bottom = -24.0
+rect_min_size = Vector2( 48, 48 )
+icon = ExtResource( 4 )
+expand_icon = true
+
+[node name="SettingsBtn" type="Button" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -72.0
+margin_top = 24.0
+margin_right = -24.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 48, 48 )
+icon = ExtResource( 5 )
+expand_icon = true
+
+[connection signal="pressed" from="AddItemBtn" to="." method="_on_AddItemBtn_pressed"]

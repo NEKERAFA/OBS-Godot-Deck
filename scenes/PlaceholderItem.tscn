@@ -1,0 +1,8 @@
+[gd_scene format=2]
+
+[node name="PlaceholderItem" type="ReferenceRect"]
+margin_right = 92.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 92, 110 )
+border_color = Color( 0, 0, 0, 0 )
+border_width = 0.0

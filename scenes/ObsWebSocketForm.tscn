@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/fonts/noto_sans_regular_data.tres" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+size = 18
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://assets/fonts/NotoSans-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 18
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFontData" id=5]
+font_path = "res://assets/fonts/NotoSans-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=6]
+font_data = SubResource( 5 )
+
+[node name="ObsWebSocketForm" type="GridContainer"]
+margin_right = 418.0
+margin_bottom = 70.0
+columns = 2
+
+[node name="AddressLbl" type="Label" parent="."]
+margin_top = 3.0
+margin_right = 82.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 2 )
+text = "Address"
+
+[node name="AddressData" type="HBoxContainer" parent="."]
+margin_left = 86.0
+margin_right = 418.0
+margin_bottom = 33.0
+
+[node name="AddressInput" type="LineEdit" parent="AddressData"]
+margin_right = 200.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 200, 0 )
+focus_neighbour_right = NodePath("../PortInput")
+focus_neighbour_bottom = NodePath("../../PasswordInput")
+focus_next = NodePath("../PortInput")
+custom_fonts/font = SubResource( 3 )
+max_length = 100
+placeholder_text = "IP Address"
+placeholder_alpha = 0.5
+caret_blink = true
+
+[node name="VSeparator" type="VSeparator" parent="AddressData"]
+margin_left = 204.0
+margin_right = 208.0
+margin_bottom = 33.0
+
+[node name="PortLbl" type="Label" parent="AddressData"]
+margin_left = 212.0
+margin_top = 3.0
+margin_right = 248.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 2 )
+text = "Port"
+
+[node name="PortInput" type="LineEdit" parent="AddressData"]
+margin_left = 252.0
+margin_right = 332.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 80, 0 )
+focus_neighbour_left = NodePath("../AddressInput")
+focus_neighbour_bottom = NodePath("../../PasswordInput")
+focus_next = NodePath("../../PasswordInput")
+focus_previous = NodePath("../AddressInput")
+custom_fonts/font = SubResource( 3 )
+placeholder_text = "4444"
+placeholder_alpha = 0.5
+caret_blink = true
+
+[node name="PasswordLbl" type="Label" parent="."]
+margin_top = 40.0
+margin_right = 82.0
+margin_bottom = 66.0
+custom_fonts/font = SubResource( 4 )
+text = "Password"
+
+[node name="PasswordInput" type="LineEdit" parent="."]
+margin_left = 86.0
+margin_top = 37.0
+margin_right = 418.0
+margin_bottom = 70.0
+focus_neighbour_top = NodePath("../AddressData/AddressInput")
+focus_neighbour_bottom = NodePath("../../SaveBtn")
+custom_fonts/font = SubResource( 6 )
+secret = true
+placeholder_text = "******"
+placeholder_alpha = 0.5
+caret_blink = true

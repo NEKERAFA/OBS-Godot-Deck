@@ -1,10 +1,11 @@
 extends Node
 
-const ObsWebSocket: GDScript = preload('res://addons/obs-websocket-gd/obs_websocket.gd')
 
+const ObsWebSocket: GDScript = preload('res://addons/obs-websocket-gd/obs_websocket.gd')
 const SETTINGS_FILE: String = "user://obs_deck.cfg"
 
 var obs_websocket: Node
+
 var obs_settings: Dictionary = {
 		"host": "localhost",
 		"password": "1234",
@@ -13,8 +14,10 @@ var obs_settings: Dictionary = {
 
 func _ready():
 	var settings_file = File.new()
+	
 	if settings_file.file_exists(SETTINGS_FILE):
-		settings_file = ConfigFile.new() 
+		settings_file = ConfigFile.new()
+		
 		if settings_file.load(SETTINGS_FILE) != OK:
 			return
 		
@@ -27,7 +30,8 @@ func _ready():
 func connect_obs():
 	obs_websocket = ObsWebSocket.new()
 	obs_websocket.host = obs_settings["host"]
-	obs_websocket.port = obs_settings["port"]
+	if obs_settings.has("port"):
+		obs_websocket.port = obs_settings["port"]
 	obs_websocket.password = obs_settings["password"]
 
 	add_child(obs_websocket, true)

@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/fonts/noto_sans_regular_data.tres" type="DynamicFontData" id=1]
 [ext_resource path="res://scripts/initial_configuration.gd" type="Script" id=2]
-[ext_resource path="res://assets/styles/BlackStyleBox.tres" type="StyleBox" id=3]
+[ext_resource path="res://scenes/ObsWebSocketForm.tscn" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFont" id=3]
 size = 26
@@ -12,45 +12,36 @@ font_data = ExtResource( 1 )
 size = 14
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=5]
-size = 18
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFontData" id=1]
+[sub_resource type="DynamicFontData" id=7]
 font_path = "res://assets/fonts/NotoSans-Regular.ttf"
 
 [sub_resource type="DynamicFont" id=6]
-font_data = SubResource( 1 )
+font_data = SubResource( 7 )
 
-[node name="InitialConfiguration" type="Panel"]
+[node name="InitialConfiguration" type="CenterContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_styles/panel = ExtResource( 3 )
 script = ExtResource( 2 )
 
-[node name="Data" type="CenterContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="Content" type="VBoxContainer" parent="Data"]
+[node name="Content" type="VBoxContainer" parent="."]
 margin_left = 264.0
-margin_top = 191.0
+margin_top = 199.0
 margin_right = 759.0
-margin_bottom = 409.0
-custom_constants/separation = 25
+margin_bottom = 401.0
+custom_constants/separation = 20
 
-[node name="Header" type="VBoxContainer" parent="Data/Content"]
+[node name="Header" type="VBoxContainer" parent="Content"]
 margin_right = 495.0
 margin_bottom = 60.0
 
-[node name="Title" type="Label" parent="Data/Content/Header"]
+[node name="Title" type="Label" parent="Content/Header"]
 margin_right = 495.0
 margin_bottom = 36.0
 size_flags_horizontal = 4
 custom_fonts/font = SubResource( 3 )
 text = "Set Initial OBS WebSocket configuration:"
 
-[node name="Subtitle" type="Label" parent="Data/Content/Header"]
+[node name="Subtitle" type="Label" parent="Content/Header"]
 margin_top = 40.0
 margin_right = 495.0
 margin_bottom = 60.0
@@ -58,104 +49,25 @@ custom_colors/font_color = Color( 0.784314, 0.784314, 0.784314, 1 )
 custom_fonts/font = SubResource( 4 )
 text = "NOTE: This settings can be changed latter fom settings menu "
 
-[node name="Form" type="CenterContainer" parent="Data/Content"]
-margin_top = 85.0
+[node name="Form" type="CenterContainer" parent="Content"]
+margin_top = 80.0
 margin_right = 495.0
-margin_bottom = 218.0
+margin_bottom = 202.0
 
-[node name="Items" type="VBoxContainer" parent="Data/Content/Form"]
-margin_left = 35.0
-margin_right = 459.0
-margin_bottom = 133.0
+[node name="Items" type="VBoxContainer" parent="Content/Form"]
+margin_left = 38.0
+margin_right = 456.0
+margin_bottom = 122.0
 custom_constants/separation = 20
 
-[node name="Data" type="GridContainer" parent="Data/Content/Form/Items"]
-margin_right = 424.0
-margin_bottom = 81.0
-custom_constants/vseparation = 15
-custom_constants/hseparation = 10
-columns = 2
+[node name="ObsWebSocketForm" parent="Content/Form/Items" instance=ExtResource( 3 )]
 
-[node name="AddressLbl" type="Label" parent="Data/Content/Form/Items/Data"]
-margin_top = 3.0
-margin_right = 82.0
-margin_bottom = 29.0
-custom_fonts/font = SubResource( 5 )
-text = "Address"
-
-[node name="AddressData" type="HBoxContainer" parent="Data/Content/Form/Items/Data"]
-margin_left = 92.0
-margin_right = 424.0
-margin_bottom = 33.0
-
-[node name="AddressInput" type="LineEdit" parent="Data/Content/Form/Items/Data/AddressData"]
-margin_right = 200.0
-margin_bottom = 33.0
-rect_min_size = Vector2( 200, 0 )
-focus_neighbour_right = NodePath("../PortInput")
-focus_neighbour_bottom = NodePath("../../PasswordInput")
-focus_next = NodePath("../PortInput")
-custom_fonts/font = SubResource( 6 )
-max_length = 100
-placeholder_text = "IP Address"
-placeholder_alpha = 0.5
-caret_blink = true
-
-[node name="VSeparator" type="VSeparator" parent="Data/Content/Form/Items/Data/AddressData"]
-margin_left = 204.0
-margin_right = 208.0
-margin_bottom = 33.0
-
-[node name="PortLbl" type="Label" parent="Data/Content/Form/Items/Data/AddressData"]
-margin_left = 212.0
-margin_top = 3.0
-margin_right = 248.0
-margin_bottom = 29.0
-custom_fonts/font = SubResource( 5 )
-text = "Port"
-
-[node name="PortInput" type="LineEdit" parent="Data/Content/Form/Items/Data/AddressData"]
-margin_left = 252.0
-margin_right = 332.0
-margin_bottom = 33.0
-rect_min_size = Vector2( 80, 0 )
-focus_neighbour_left = NodePath("../AddressInput")
-focus_neighbour_bottom = NodePath("../../PasswordInput")
-focus_next = NodePath("../../PasswordInput")
-focus_previous = NodePath("../AddressInput")
-custom_fonts/font = SubResource( 6 )
-placeholder_text = "4444"
-placeholder_alpha = 0.5
-caret_blink = true
-
-[node name="PasswordLbl" type="Label" parent="Data/Content/Form/Items/Data"]
-margin_top = 51.0
-margin_right = 82.0
-margin_bottom = 77.0
-custom_fonts/font = SubResource( 5 )
-text = "Password"
-
-[node name="PasswordInput" type="LineEdit" parent="Data/Content/Form/Items/Data"]
-margin_left = 92.0
-margin_top = 48.0
-margin_right = 424.0
-margin_bottom = 81.0
-focus_neighbour_top = NodePath("../AddressData/AddressInput")
-focus_neighbour_bottom = NodePath("../../SaveBtn")
-custom_fonts/font = SubResource( 6 )
-secret = true
-placeholder_text = "******"
-placeholder_alpha = 0.5
-caret_blink = true
-
-[node name="SaveBtn" type="Button" parent="Data/Content/Form/Items"]
-margin_top = 101.0
-margin_right = 424.0
-margin_bottom = 133.0
+[node name="SaveBtn" type="Button" parent="Content/Form/Items"]
+margin_top = 90.0
+margin_right = 418.0
+margin_bottom = 122.0
 rect_min_size = Vector2( 0, 32 )
-focus_neighbour_top = NodePath("../Data/PasswordInput")
-focus_previous = NodePath("../Data/PasswordInput")
 custom_fonts/font = SubResource( 6 )
 text = "Save"
 
-[connection signal="pressed" from="Data/Content/Form/Items/SaveBtn" to="." method="_on_SaveBtn_pressed"]
+[connection signal="pressed" from="Content/Form/Items/SaveBtn" to="." method="_on_SaveBtn_pressed"]

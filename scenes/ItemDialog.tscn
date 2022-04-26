@@ -1,0 +1,74 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="ButtonGroup" id=1]
+
+[node name="ItemDialog" type="CenterContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -4.0
+margin_bottom = -4.0
+
+[node name="WindowDialog" type="WindowDialog" parent="."]
+visible = true
+margin_left = 362.0
+margin_top = 205.0
+margin_right = 662.0
+margin_bottom = 395.0
+rect_min_size = Vector2( 300, 190 )
+window_title = "Add Command"
+
+[node name="CommandForm" type="VBoxContainer" parent="WindowDialog"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 293.0
+margin_bottom = 180.0
+custom_constants/separation = 10
+
+[node name="Name" type="VBoxContainer" parent="WindowDialog/CommandForm"]
+margin_right = 283.0
+margin_bottom = 46.0
+custom_constants/separation = 8
+
+[node name="NameLbl" type="Label" parent="WindowDialog/CommandForm/Name"]
+margin_right = 283.0
+margin_bottom = 14.0
+text = "Name:"
+
+[node name="NameInput" type="LineEdit" parent="WindowDialog/CommandForm/Name"]
+margin_top = 22.0
+margin_right = 283.0
+margin_bottom = 46.0
+
+[node name="Option" type="VBoxContainer" parent="WindowDialog/CommandForm"]
+margin_top = 56.0
+margin_right = 283.0
+margin_bottom = 126.0
+custom_constants/separation = 8
+
+[node name="OptionLbl" type="Label" parent="WindowDialog/CommandForm/Option"]
+margin_right = 283.0
+margin_bottom = 14.0
+text = "Option:"
+
+[node name="CommandType" type="OptionButton" parent="WindowDialog/CommandForm/Option"]
+margin_top = 22.0
+margin_right = 283.0
+margin_bottom = 42.0
+group = SubResource( 1 )
+
+[node name="CommandOption" type="OptionButton" parent="WindowDialog/CommandForm/Option"]
+margin_top = 50.0
+margin_right = 283.0
+margin_bottom = 70.0
+group = SubResource( 1 )
+
+[node name="VSplitContainer" type="VSplitContainer" parent="WindowDialog/CommandForm"]
+margin_top = 136.0
+margin_right = 283.0
+margin_bottom = 136.0
+
+[node name="SaveBtn" type="Button" parent="WindowDialog/CommandForm"]
+margin_top = 146.0
+margin_right = 283.0
+margin_bottom = 166.0
+text = "Save"

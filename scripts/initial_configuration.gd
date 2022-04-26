@@ -1,10 +1,12 @@
-extends Panel
+extends CenterContainer
 
 
-onready var address_input = $"Data/Content/Form/Items/Data/AddressData/AddressInput"
-onready var port_input = $"Data/Content/Form/Items/Data/AddressData/PortInput"
-onready var password_input = $"Data/Content/Form/Items/Data/PasswordInput"
-onready var save_btn = $"Data/Content/Form/Items/SaveBtn"
+signal configuration_saved
+
+onready var address_input = $"Content/Form/Items/ObsWebSocketForm/AddressData/AddressInput"
+onready var port_input = $"Content/Form/Items/ObsWebSocketForm/AddressData/PortInput"
+onready var password_input = $"Content/Form/Items/ObsWebSocketForm/PasswordInput"
+onready var save_btn = $"Content/Form/Items/SaveBtn"
 
 
 func _process(_delta):
@@ -12,8 +14,8 @@ func _process(_delta):
 	
 	if save_btn.disabled:
 		save_btn.focus_mode = Control.FOCUS_NONE
-		password_input.focus_neighbour_bottom = "Data/Content/Form/Items/SaveBtn"
-		password_input.focus_next = "Data/Content/Form/Items/SaveBtn"
+		password_input.focus_neighbour_bottom = "Content/Form/Items/SaveBtn"
+		password_input.focus_next = "Content/Form/Items/SaveBtn"
 	else:
 		save_btn.focus_mode = Control.FOCUS_ALL
 		password_input.focus_neighbour_bottom = ""
@@ -30,4 +32,4 @@ func _on_SaveBtn_pressed():
 	
 	Global.save_settings()
 	
-	get_tree().change_scene("res://scenes/MainPanel.tscn")
+	emit_signal("configuration_saved")
