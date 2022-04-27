@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/PlaceholderItem.tscn" type="PackedScene" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://assets/icons/list-add.svg" type="Texture" id=4]
 [ext_resource path="res://assets/icons/system.svg" type="Texture" id=5]
 [ext_resource path="res://scripts/main_panel.gd" type="Script" id=6]
+[ext_resource path="res://scenes/ItemDialog.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/item_dialog.gd" type="Script" id=8]
+[ext_resource path="res://scenes/SettingsPanel.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -15,6 +18,9 @@ font_data = ExtResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 6 )
+
+[node name="ItemDialog" parent="." instance=ExtResource( 7 )]
+script = ExtResource( 8 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -221,4 +227,8 @@ rect_min_size = Vector2( 48, 48 )
 icon = ExtResource( 5 )
 expand_icon = true
 
-[connection signal="pressed" from="AddItemBtn" to="." method="_on_AddItemBtn_pressed"]
+[node name="SettingsPanel" parent="." instance=ExtResource( 9 )]
+margin_left = 1024.0
+margin_right = 1023.82
+
+[connection signal="pressed" from="AddItemBtn" to="ItemDialog" method="_on_AddItemBtn_pressed"]

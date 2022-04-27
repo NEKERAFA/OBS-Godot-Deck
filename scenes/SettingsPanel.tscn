@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/ObsWebSocketForm.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/fonts/noto_sans_regular_data.tres" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 2 )
+
+[node name="SettingsPanel" type="PanelContainer"]
+anchor_right = 0.424
+anchor_bottom = 1.0
+margin_right = -0.176025
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 427.0
+margin_bottom = 593.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_right = 418.0
+margin_bottom = 209.0
+custom_constants/separation = 15
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+margin_right = 418.0
+margin_bottom = 45.0
+custom_fonts/font = SubResource( 1 )
+text = "Settings"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_top = 60.0
+margin_right = 418.0
+margin_bottom = 174.0
+custom_constants/separation = 10
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/VBoxContainer"]
+margin_right = 418.0
+margin_bottom = 34.0
+custom_fonts/font = SubResource( 2 )
+text = "OBS Websocket"
+
+[node name="ObsWebSocketForm" parent="ScrollContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 44.0
+margin_bottom = 114.0
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer"]
+margin_top = 189.0
+margin_right = 418.0
+margin_bottom = 209.0
+text = "Save"
