@@ -11,6 +11,16 @@ var obs_settings: Dictionary = {
 		"password": "1234",
 }
 
+var obs_connected: bool = false
+
+var obs_scenes: Array = []
+
+var desktop_items: Array = []
+
+class SceneSorter:
+	static func sort_ascending(a, b):
+		return a["id"] < b["id"]
+
 
 func _ready():
 	var settings_file = File.new()
@@ -43,7 +53,11 @@ func connect_obs():
 	
 	yield(obs_websocket, "obs_authenticated")
 	
-	obs_websocket.send_command("GetVersion")
+	send_command("GetVersion")
+
+
+func send_command(command):
+	obs_websocket.send_command(command)
 
 
 func update_settings():
@@ -69,5 +83,21 @@ func save_settings():
 	settings_file.save(SETTINGS_FILE)
 
 
-func _on_obs_data_received(data):
+func _on_obs_data_received(data: ObsWebSocket.ObsMessage):
+	print(data.op)
 	print(data.get_as_json())
+
+	if data.op == ObsWebSocket.OpCodeEnums.WebSocketOpCode.RequestResponse.IDENTIFIER_VALUE:
+		if data.d["requestType"] == "GetVersion":
+			obs_connected = true
+
+		if data.d["requestType"] == "GetSceneList":
+			print("world")
+			obs_scenes.clear()
+			for scene in data.d["responseData"]["scenes"]:
+				obs_scenes.append({
+					"id": scene["sceneIndex"],
+					"name": scene["sceneName"],
+				})
+				
+				obs_scenes.sort_custom(SceneSorter, "sort_ascending")

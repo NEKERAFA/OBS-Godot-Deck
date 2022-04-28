@@ -65,4 +65,6 @@ margin_right = 283.0
 margin_bottom = 166.0
 text = "Save"
 
+[connection signal="about_to_show" from="." to="CommandForm" method="_on_ItemDialog_about_to_show"]
+[connection signal="popup_hide" from="." to="CommandForm" method="_on_ItemDialog_popup_hide"]
 [connection signal="pressed" from="CommandForm/SaveBtn" to="CommandForm" method="_on_SaveBtn_pressed"]
