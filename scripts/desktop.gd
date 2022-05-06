@@ -15,6 +15,7 @@ func _ready():
 	if not settings_file.file_exists(Global.SETTINGS_FILE):
 		_add_initial_config_ui()
 	else:
+		Global.load_settings()
 		_add_main_ui()
 
 

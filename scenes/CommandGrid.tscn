@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/Item.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/PlaceholderItem.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/command_grid.gd" type="Script" id=3]
 
 [node name="CommandGrid" type="CenterContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( -875, -974 )
+script = ExtResource( 3 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_left = 134.0
@@ -27,7 +29,7 @@ custom_constants/vseparation = 32
 custom_constants/hseparation = 64
 columns = 5
 
-[node name="Item" parent="MarginContainer/GridContainer" instance=ExtResource( 1 )]
+[node name="Item1" parent="MarginContainer/GridContainer" instance=ExtResource( 1 )]
 visible = false
 margin_right = 92.0
 margin_bottom = 110.0
@@ -102,7 +104,7 @@ visible = false
 margin_right = 92.0
 margin_bottom = 110.0
 
-[node name="PlaceholderItem" parent="MarginContainer/GridContainer" instance=ExtResource( 2 )]
+[node name="PlaceholderItem1" parent="MarginContainer/GridContainer" instance=ExtResource( 2 )]
 
 [node name="PlaceholderItem2" parent="MarginContainer/GridContainer" instance=ExtResource( 2 )]
 margin_left = 156.0
@@ -175,3 +177,10 @@ margin_left = 624.0
 margin_top = 284.0
 margin_right = 716.0
 margin_bottom = 394.0
+
+[node name="PopupDialog" type="PopupDialog" parent="."]
+visible = true
+margin_left = 512.0
+margin_top = 300.0
+margin_right = 512.0
+margin_bottom = 300.0

@@ -8,10 +8,12 @@ var obs_websocket: Node
 
 var obs_settings: Dictionary = {
 		"host": "localhost",
-		"password": "1234",
+		"password": "4444",
 }
 
 var obs_connected: bool = false
+
+var obs_scenes_getted: bool = false
 
 var obs_scenes: Array = []
 
@@ -56,29 +58,38 @@ func connect_obs():
 	send_command("GetVersion")
 
 
-func send_command(command):
-	obs_websocket.send_command(command)
+func send_command(command: String, data: Dictionary = {}):
+	print("Sending ", command, ", ", data)
+	obs_websocket.send_command(command, data)
 
 
-func update_settings():
+func load_settings():
 	var settings_file = ConfigFile.new() 
 	var err = settings_file.load(SETTINGS_FILE)
 	if err != OK:
 		return err
 	
-	obs_settings["host"] = settings_file.get_value("obs", "host")
-	if settings_file.has_section_key("obs", "port"):
-		obs_settings["port"] = settings_file.get_value("obs", "port")
-	obs_settings["password"] = settings_file.get_value("obs", "password")
+	# Get OBS settings
+	obs_settings["host"] = settings_file.get_value("ObsWebSocket", "host")
+	if settings_file.has_section_key("ObsWebSocket", "port"):
+		obs_settings["port"] = settings_file.get_value("ObsWebSocket", "port")
+	obs_settings["password"] = settings_file.get_value("ObsWebSocket", "password")
+	
+	# Get Desktop settings
+	desktop_items = settings_file.get_value("Desktop", "items")
 
 
 func save_settings():
 	var settings_file = ConfigFile.new()
 	
+	# Save OBS settings
 	settings_file.set_value("ObsWebSocket", "host", obs_settings["host"])
 	if obs_settings.has("port"):
 		settings_file.set_value("ObsWebSocket", "port", obs_settings["port"])
 	settings_file.set_value("ObsWebSocket", "password", obs_settings["password"])
+	
+	# Save Desktop settings
+	settings_file.set_value("Desktop", "items", desktop_items)
 	
 	settings_file.save(SETTINGS_FILE)
 
@@ -92,7 +103,10 @@ func _on_obs_data_received(data: ObsWebSocket.ObsMessage):
 			obs_connected = true
 
 		if data.d["requestType"] == "GetSceneList":
-			print("world")
+			print(data.d["responseData"])
+			
+			obs_scenes_getted = true
+			
 			obs_scenes.clear()
 			for scene in data.d["responseData"]["scenes"]:
 				obs_scenes.append({

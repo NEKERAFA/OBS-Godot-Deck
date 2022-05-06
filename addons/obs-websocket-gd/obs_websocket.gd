@@ -1068,6 +1068,7 @@ func send_command(command: String, data: Dictionary = {}) -> void:
 		return
 	
 	var req := Request.new(command, "1", data)
+	print(req.get_as_json())
 	
 	_send_message(req.get_as_json().to_utf8())
 
