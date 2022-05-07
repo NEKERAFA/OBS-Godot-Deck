@@ -4,20 +4,16 @@ extends Node
 const ObsWebSocket: GDScript = preload('res://addons/obs-websocket-gd/obs_websocket.gd')
 const SETTINGS_FILE: String = "user://obs_deck.cfg"
 
-var obs_websocket: Node
+var obs_websocket: Node = null
+var obs_connected: bool = false
+var obs_scenes_getted: bool = false
+var obs_scenes: Array = []
+var desktop_items: Array = []
 
 var obs_settings: Dictionary = {
 		"host": "localhost",
 		"password": "4444",
 }
-
-var obs_connected: bool = false
-
-var obs_scenes_getted: bool = false
-
-var obs_scenes: Array = []
-
-var desktop_items: Array = []
 
 class SceneSorter:
 	static func sort_ascending(a, b):
@@ -40,6 +36,15 @@ func _ready():
 
 
 func connect_obs():
+	if obs_websocket != null:
+		obs_websocket.break_connection()
+		
+		obs_connected = false
+		obs_scenes_getted = false
+		obs_scenes = []
+		
+		remove_child(obs_websocket)
+	
 	obs_websocket = ObsWebSocket.new()
 	obs_websocket.host = obs_settings["host"]
 	if obs_settings.has("port"):

@@ -12,6 +12,7 @@ onready var command_form: Node = $"ItemDialog/CommandForm"
 onready var message_container: Node = $"MessageContent"
 onready var message_background: Node = $"MessageContent/BackgroundRect"
 onready var message_lbl: Node = $"MessageContent/MessageLbl"
+onready var settings_panel: Node = $"SettingsPanel"
 onready var add_item_btn: Node = $"AddItemBtn"
 onready var settings_btn: Node = $"SettingsBtn"
 
@@ -20,13 +21,15 @@ var status = ObsStatus.NONE
 
 
 func _ready():
-	Global.connect_obs()
-	command_form.connect("save_item_data", self, "_on_save_item_data")
+	command_form.connect("save_item_data", self, "_on_ItemDialog_save_data")
 	add_item_btn.disabled = true
-	settings_btn.disabled = true
 	message_background.show()
 	message_lbl.show()
 	message_lbl.text = "Connecting to OBS..."
+	Global.connect_obs()
+	
+	for item in Global.desktop_items:
+		_add_item(item["name"], item["type"], item["value"])
 
 
 func _process(delta):
@@ -48,16 +51,55 @@ func _process(delta):
 		if Global.desktop_items.size() == 0:
 			message_lbl.text = "Add commands to show there"
 		else:
-			if message_container.visible:
-				message_container.hide()
+			message_lbl.hide()
+			message_container.hide()
 			
-				for item in Global.desktop_items:
-					_add_item(item["name"], item["type"], item["value"])
-					
 		status = ObsStatus.FINISHED
 
 
-func _on_save_item_data(command_name, command_type, command_value):
+func _add_item(name, type, value):
+	var item = Item.new()
+	item.name = name
+	item.type = type
+	item.value = value
+	 
+	main_grid.add_item(item)
+
+
+func _remove_item(pos):
+	main_grid.remove_item(pos)
+
+
+func _clear_items():
+	main_grid.clear_item()
+
+
+func _on_item_removed(position):
+	_remove_item(position)
+	
+	Global.desktop_items.remove(position)
+	Global.save_settings()
+	
+	if Global.desktop_items.size() == 0:
+		message_container.show()
+		message_lbl.show()
+		message_lbl.text = "Add commands to show there"
+
+
+func _on_AddItemBtn_pressed():
+	message_container.show()
+	message_background.show()
+	item_dialog.window_title = "Add Command"
+	item_dialog.popup_centered()
+
+
+func _on_ItemDialog_popup_hide():
+	message_background.hide()
+	if Global.desktop_items.size() > 0:
+		message_container.hide()
+
+
+func _on_ItemDialog_save_data(command_name, command_type, command_value):
 	item_dialog.hide()
 
 	Global.desktop_items.append({
@@ -69,16 +111,37 @@ func _on_save_item_data(command_name, command_type, command_value):
 	Global.save_settings()
 	
 	_add_item(command_name, command_type, command_value)
-
-
-func _add_item(name, type, value):
-	var item = Item.new()
-	item.name = name
-	item.type = type
-	item.value = value
 	
-	main_grid.add_item(item)
+	if message_lbl.visible:
+		message_lbl.hide()
+	
+	if message_container.visible:
+		message_container.hide()
 
 
-func _remove_item(pos):
-	main_grid.remove_item(pos)
+func _on_SettingsBtn_pressed():
+	message_container.show()
+	message_background.show()
+	settings_panel.show()
+
+
+func _on_SettingsPanel_close_pressed():
+	message_background.hide()
+	if Global.desktop_items.size() > 0:
+		message_container.hide()
+
+
+func _on_SettingsPanel_settings_saved():
+	add_item_btn.disabled = true
+	
+	message_background.show()
+	message_lbl.show()
+	message_lbl.text = "Connecting to OBS..."
+	
+	Global.connect_obs()
+	
+	status = ObsStatus.NONE
+	
+	_clear_items()
+	for item in Global.desktop_items:
+		_add_item(item["name"], item["type"], item["value"])

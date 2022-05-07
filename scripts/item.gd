@@ -40,29 +40,26 @@ func remove_item():
 
 
 func _on_Button_pressed():
-	print(item_value.type, Type.GO_TO)
-	match item_value.type:
-		Type.GO_TO:
-			var scene = null
-			for scene_item in Global.obs_scenes:
-				if scene_item["id"] == item_value.value:
-					scene = scene_item
-			
-			if scene != null:
-				Global.send_command("SetCurrentProgramScene", { "sceneName": scene["name"] })
+	if timer.time_left > 0:
+		
+		match item_value.type:
+			Type.GO_TO:
+				var scene = null
+				for scene_item in Global.obs_scenes:
+					if scene_item["id"] == item_value.value:
+						scene = scene_item
+				
+				if scene != null:
+					Global.send_command("SetCurrentProgramScene", { "sceneName": scene["name"] })
 
 
 func _on_Button_button_down():
-	print("hello")
-	if timer.is_stopped():
-		timer.start()
+	timer.start()
 
 
 func _on_Button_button_up():
-	if not timer.is_stopped():
-		timer.stop()
+	timer.stop()
 
 
 func _on_Timer_timeout():
-	print("hello 2")
 	emit_signal("item_removed", item_position)

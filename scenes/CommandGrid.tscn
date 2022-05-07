@@ -178,9 +178,21 @@ margin_top = 284.0
 margin_right = 716.0
 margin_bottom = 394.0
 
-[node name="PopupDialog" type="PopupDialog" parent="."]
-visible = true
-margin_left = 512.0
-margin_top = 300.0
-margin_right = 512.0
-margin_bottom = 300.0
+[node name="BackgroundDialog" type="ColorRect" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
+color = Color( 0, 0, 0, 0.501961 )
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+margin_left = 412.0
+margin_top = 262.0
+margin_right = 612.0
+margin_bottom = 337.0
+window_title = "Remove item"
+dialog_text = "Do you want to remove the selected item?"
+dialog_autowrap = true
+
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_ConfirmationDialog_confirmed"]
+[connection signal="popup_hide" from="ConfirmationDialog" to="." method="_on_ConfirmationDialog_popup_hide"]

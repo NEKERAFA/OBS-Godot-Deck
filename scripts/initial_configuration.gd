@@ -24,12 +24,9 @@ func _process(_delta):
 
 func _on_SaveBtn_pressed():
 	Global.obs_settings["host"] = address_input.text
-	
 	if port_input.text.length() > 0:
 		Global.obs_settings["port"] = port_input.text
-		
 	Global.obs_settings["password"] = password_input.text
 	
 	Global.save_settings()
-	
 	emit_signal("configuration_saved")

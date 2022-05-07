@@ -12,6 +12,7 @@ config_version=4
 
 config/name="OBS Godot Deck"
 run/main_scene="res://scenes/Desktop.tscn"
+run/delta_smoothing=false
 config/icon="res://icon.png"
 
 [autoload]
@@ -21,6 +22,8 @@ Global="*res://scripts/global.gd"
 [display]
 
 window/size/resizable=false
+window/size/fullscreen=true
+window/dpi/allow_hidpi=true
 
 [physics]
 
