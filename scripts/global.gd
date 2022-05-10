@@ -35,6 +35,11 @@ func _ready():
 		obs_settings["password"] = settings_file.get_value("ObsWebSocket", "password")
 
 
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().quit()
+
+
 func connect_obs():
 	if obs_websocket != null:
 		obs_websocket.break_connection()
