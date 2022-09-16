@@ -62,4 +62,4 @@ func _on_Button_button_up():
 
 
 func _on_Timer_timeout():
-	emit_signal("item_removed", item_position)
+	emit_signal("item_removed", item_position - 1)

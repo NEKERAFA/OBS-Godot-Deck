@@ -26,16 +26,20 @@ size = 24
 font_data = ExtResource( 2 )
 
 [node name="SettingsPanel" type="PanelContainer"]
-anchor_right = 0.424
+anchor_left = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -0.176025
+grow_vertical = 2
+rect_min_size = Vector2( 433, 0 )
 script = ExtResource( 4 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 427.0
-margin_bottom = 593.0
+margin_right = 426.0
+margin_bottom = 473.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 margin_right = 419.0

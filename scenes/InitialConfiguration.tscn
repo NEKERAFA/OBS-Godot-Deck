@@ -24,10 +24,10 @@ anchor_bottom = 1.0
 script = ExtResource( 2 )
 
 [node name="Content" type="VBoxContainer" parent="."]
-margin_left = 264.0
-margin_top = 199.0
-margin_right = 759.0
-margin_bottom = 401.0
+margin_left = 152.0
+margin_top = 139.0
+margin_right = 647.0
+margin_bottom = 341.0
 custom_constants/separation = 20
 
 [node name="Header" type="VBoxContainer" parent="Content"]
